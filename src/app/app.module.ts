@@ -9,12 +9,17 @@ import { provideHttpClient } from '@angular/common/http';
 import { PeopleItemComponent } from './list/components/people-item/people-item.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
+import { DetailComponent } from './detail/detail.component';
+import { provideRouter } from '@angular/router';
+import { DetailItemComponent } from './detail/components/detail-item/detail-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListComponent,
-    PeopleItemComponent
+    PeopleItemComponent,
+    DetailComponent,
+    DetailItemComponent
   ],
   imports: [
     BrowserModule,

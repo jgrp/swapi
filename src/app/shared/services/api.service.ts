@@ -21,4 +21,8 @@ export class ApiService {
       map((res) => res.results)
     );
   }
+
+  public getPerson(id: number): Observable<IPeople> {
+    return this._http.get<IPeople>(`${BASE_URL}/people/${id}`);
+  }
 }

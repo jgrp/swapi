@@ -11,5 +11,6 @@ import { IPeople } from '../../../shared/types';
 export class PeopleItemComponent {
 
   @Input() data!: IPeople;
+  @Input() id!: number;
   // protected data = input<IPeople>();
 }
