@@ -1,0 +1,7 @@
+<mat-list>
+@for (person of (people$ | async); track person.name) {
+  <app-people-item [data]="person"></app-people-item>
+} @empty {
+  <mat-list-item>Empty</mat-list-item>
+}
+</mat-list>
