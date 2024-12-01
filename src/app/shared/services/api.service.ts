@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, Observable } from 'rxjs';
+import { expand, map, Observable, of, reduce, takeWhile } from 'rxjs';
 import { IPeople } from '../types/IPeople.interface';
 import { IApiResult } from '../types/IApiResult.interface';
 
@@ -16,12 +16,29 @@ export class ApiService {
   constructor() {
   }
 
-  public getPeoples(): Observable<IPeople[]> {
+  /**
+   * Collects all paginated people from an API.
+   * Calls API recursively and stops when `response.next` is null.
+   * @returns An Observable of all people.
+   */
+  public getPeople(): Observable<IPeople[]> {
     return this._http.get<IApiResult<IPeople>>(`${BASE_URL}/people`).pipe(
-      map((res) => res.results)
+      // Recursively call, until next is null
+      expand((res) =>
+        res.next ? this._http.get<IApiResult<IPeople>>(res.next) : of(null)
+      ),
+      takeWhile(res => res !== null),
+      map((res) => res.results),
+      reduce(((allResults, currentResults) => [...allResults, ...currentResults]))
     );
   }
 
+
+  /**
+   * Get Person data from Api
+   * @param id
+   * @returns An Observable of person data.
+   */
   public getPerson(id: number): Observable<IPeople> {
     return this._http.get<IPeople>(`${BASE_URL}/people/${id}`);
   }

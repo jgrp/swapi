@@ -16,7 +16,7 @@ export class ListComponent implements OnInit {
   protected people$: Observable<IPeople[]>;
 
   constructor() {
-    this.people$ = this._apiService.getPeoples();
+    this.people$ = this._apiService.getPeople();
   }
 
 
