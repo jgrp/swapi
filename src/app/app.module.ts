@@ -12,6 +12,7 @@ import { MatListModule } from '@angular/material/list';
 import { DetailComponent } from './detail/detail.component';
 import { provideRouter } from '@angular/router';
 import { DetailItemComponent } from './detail/components/detail-item/detail-item.component';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { DetailItemComponent } from './detail/components/detail-item/detail-item
     BrowserModule,
     AppRoutingModule,
     MatCardModule,
-    MatListModule
+    MatListModule,
+    StoreModule.forRoot({}, {})
   ],
   providers: [
     provideAnimationsAsync(),
