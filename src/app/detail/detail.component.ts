@@ -1,8 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IPeople } from '../shared/types';
 import { Store } from '@ngrx/store';
 import { PeopleActions } from '../shared/state';
+import { IPerson } from '../shared/types';
 
 @Component({
   selector: 'app-detail',
@@ -12,7 +12,7 @@ import { PeopleActions } from '../shared/state';
   styleUrl: './detail.component.scss'
 })
 export class DetailComponent implements OnInit {
-  protected person!: IPeople;
+  protected person!: IPerson;
   protected readonly _activatedRoute = inject(ActivatedRoute);
   private readonly _store = inject(Store);
 

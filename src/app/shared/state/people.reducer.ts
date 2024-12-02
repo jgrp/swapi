@@ -1,11 +1,11 @@
 import { createReducer, on } from '@ngrx/store';
 import * as PeopleActions from './people.actions';
-import { IPeople } from '../types';
+import { IPerson } from '../types/IPerson.interface';
 
 export interface PeopleState {
-  people: IPeople[];
+  people: IPerson[];
   error: string | null;
-  searchResults: IPeople[] | null;
+  searchResults: IPerson[] | null;
   loading: boolean;
 }
 

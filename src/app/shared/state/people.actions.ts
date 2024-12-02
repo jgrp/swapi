@@ -1,11 +1,11 @@
 import { createAction, props } from '@ngrx/store';
-import { IPeople } from '../types';
+import { IPerson } from '../types';
 
 // Load People
 export const loadPeople = createAction('[People] Load People');
 export const loadPeopleSuccess = createAction(
   '[People] Load People Success',
-  props<{ people: IPeople[] }>()
+  props<{ people: IPerson[] }>()
 );
 export const loadPeopleFailure = createAction(
   '[People] Load People Failure',
@@ -15,7 +15,7 @@ export const loadPeopleFailure = createAction(
 // Add Person
 export const addPerson = createAction(
   '[People] Add Person',
-  props<{ person: IPeople }>()
+  props<{ person: IPerson }>()
 );
 
 // Remove Person

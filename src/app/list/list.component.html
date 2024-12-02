@@ -1,9 +1,13 @@
+<button (click)="onAddPerson()" mat-raised-button>Add Person</button>
+
+<mat-divider></mat-divider>
+
 <mat-nav-list>
   @if (loading$ | async) {
     Loading...
   } @else {
     @for (person of (people$ | async); track person.id) {
-      <app-people-item [data]="person" (removeItem)="removePerson($event)"></app-people-item>
+      <app-people-item [data]="person" (removeItem)="onRemovePerson($event)"></app-people-item>
     } @empty {
       <mat-list-item>
         No Items
@@ -11,3 +15,4 @@
     }
   }
 </mat-nav-list>
+

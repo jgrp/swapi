@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { IPeople } from '../../../shared/types';
+import { IPerson } from '../../../shared/types';
 
 @Component({
   selector: 'app-people-item',
@@ -10,7 +10,7 @@ import { IPeople } from '../../../shared/types';
 })
 export class PeopleItemComponent {
 
-  @Input() data!: IPeople;
+  @Input() data!: IPerson;
   @Output() removeItem = new EventEmitter<number>();
 
   protected onRemoveClick(): void {

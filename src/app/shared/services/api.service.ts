@@ -1,8 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
-import { IPeople } from '../types/IPeople.interface';
 import { IApiResult } from '../types/IApiResult.interface';
+import { IPerson } from '../types';
 
 const BASE_URL = 'https://swapi.dev/api/';
 
@@ -21,7 +21,7 @@ export class ApiService {
    * Calls API recursively and stops when `response.next` is null.
    * @returns An Observable of all people.
    */
-  public getPeople(): Observable<IPeople[]> {
+  public getPeople(): Observable<IPerson[]> {
     // return this._http.get<IApiResult<IPeople>>(`${BASE_URL}/people`).pipe(
     //   // Recursively call, until next is null
     //   expand((res) =>
@@ -31,7 +31,7 @@ export class ApiService {
     //   map((res) => res.results),
     //   reduce(((allResults, currentResults) => [...allResults, ...currentResults]))
     // );
-    return this._http.get<IApiResult<IPeople>>(`${BASE_URL}/people`).pipe(
+    return this._http.get<IApiResult<IPerson>>(`${BASE_URL}/people`).pipe(
       map((res) => res.results)
     );
   }
@@ -42,7 +42,7 @@ export class ApiService {
    * @param id
    * @returns An Observable of person data.
    */
-  public getPerson(id: number): Observable<IPeople> {
-    return this._http.get<IPeople>(`${BASE_URL}/people/${id}`);
+  public getPerson(id: number): Observable<IPerson> {
+    return this._http.get<IPerson>(`${BASE_URL}/people/${id}`);
   }
 }

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IPeople } from '../../../shared/types';
+import { IPerson } from '../../../shared/types';
 
 @Component({
   selector: 'app-detail-item',
@@ -9,5 +9,5 @@ import { IPeople } from '../../../shared/types';
   styleUrl: './detail-item.component.scss'
 })
 export class DetailItemComponent {
-  @Input() person!: IPeople;
+  @Input() person!: IPerson;
 }

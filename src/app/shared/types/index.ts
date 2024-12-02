@@ -1,2 +1,2 @@
 export * from './IApiResult.interface';
-export * from './IPeople.interface';
+export * from './IPerson.interface';
