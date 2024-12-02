@@ -1,7 +1,13 @@
 <mat-nav-list>
-  @for (person of (people$ | async); track person.name; let id = $index) {
-    <app-people-item [data]="person" [id]="id+1"></app-people-item>
-  } @empty {
-    <mat-list-item>Loading...</mat-list-item>
+  @if (loading$ | async) {
+    Loading...
+  } @else {
+    @for (person of (people$ | async); track person.id) {
+      <app-people-item [data]="person" (removeItem)="removePerson($event)"></app-people-item>
+    } @empty {
+      <mat-list-item>
+        No Items
+      </mat-list-item>
+    }
   }
 </mat-nav-list>

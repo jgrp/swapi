@@ -1,3 +1,6 @@
-<a [routerLink]="['/detail', id]" mat-list-item>
-  <strong> {{ data.name }} </strong>
+<a [routerLink]="['/detail', data.id]" class="item-link" mat-list-item>
+  {{ data.name }}
 </a>
+<button (click)="onRemoveClick()" class="item-button" mat-button>
+  <mat-icon class="icon">delete</mat-icon>
+</button>

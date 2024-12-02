@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { IPeople } from '../../../shared/types';
 
 @Component({
@@ -11,6 +11,9 @@ import { IPeople } from '../../../shared/types';
 export class PeopleItemComponent {
 
   @Input() data!: IPeople;
-  @Input() id!: number;
-  // protected data = input<IPeople>();
+  @Output() removeItem = new EventEmitter<number>();
+
+  protected onRemoveClick(): void {
+    this.removeItem.emit(this.data.id);
+  }
 }

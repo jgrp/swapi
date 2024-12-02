@@ -1,3 +1,18 @@
-a .mdc-list-item__primary-text {
-  color: white;
+:host {
+  position: relative;
 }
+
+.icon {
+  margin: 0;
+}
+
+.item-button {
+  position: absolute;
+  right: 0;
+  top: 3px;
+}
+
+
+
+
+
