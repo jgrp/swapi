@@ -1,7 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { PeopleActions } from '../shared/state';
 import { IPerson } from '../shared/types';
 
 @Component({
@@ -19,10 +18,4 @@ export class DetailComponent implements OnInit {
   ngOnInit() {
     this._activatedRoute.data.subscribe(({data}) => this.person = data);
   }
-
-  protected removePerson(id: number): void {
-    console.log('removePerson', id);
-    this._store.dispatch(PeopleActions.removePerson({personId: id}));
-  }
-
 }

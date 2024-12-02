@@ -12,13 +12,3 @@ export const selectLoading = createSelector(
   selectPeopleState,
   (state) => state.loading
 );
-
-export const selectSearchResults = createSelector(
-  selectPeopleState,
-  (state) => state.searchResults
-);
-
-export const selectPeopleError = createSelector(
-  selectPeopleState,
-  (state) => state.error
-);

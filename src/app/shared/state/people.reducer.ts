@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import * as PeopleActions from './people.actions';
-import { IPerson } from '../types/IPerson.interface';
+import { IPerson } from '../types';
 
 export interface PeopleState {
   people: IPerson[];
@@ -16,6 +16,14 @@ const initialState: PeopleState = {
   loading: false,
 };
 
+
+function extractID(url: string | undefined): string | undefined {
+  if (!url) return undefined;
+  const parts = url.split('/');
+  return parts.pop() ?? '';
+}
+
+
 export const peopleReducer = createReducer(
   initialState,
   on(PeopleActions.loadPeople, (state) => ({
@@ -27,7 +35,7 @@ export const peopleReducer = createReducer(
     loading: false,
     people: people.map((person, index) => ({
       ...person,
-      id: index + 1, // Add id based on index, not given from api
+      id: extractID(person?.url),
     })),
     error: null,
   })),
@@ -38,7 +46,8 @@ export const peopleReducer = createReducer(
   })),
   on(PeopleActions.addPerson, (state, {person}) => ({
     ...state,
-    people: [...state.people, {...person, id: state.people.length + 1}], // Add new person with ID
+    // Add new person to state with internal ID, to load details from state
+    people: [...state.people, {...person, id: 'i' + (state.people.length + 1)}],
   })),
   on(PeopleActions.removePerson, (state, {personId}) => ({
     ...state,

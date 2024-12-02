@@ -21,7 +21,7 @@ export const addPerson = createAction(
 // Remove Person
 export const removePerson = createAction(
   '[People] Remove Person',
-  props<{ personId: number }>()
+  props<{ personId: string }>()
 );
 
 // Search Person

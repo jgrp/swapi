@@ -1,4 +1,5 @@
 export interface IPerson {
+  id?: string;
   name: string;
   height?: string;
   mass?: string;
@@ -15,5 +16,4 @@ export interface IPerson {
   created?: string;
   edited?: string;
   url?: string;
-  id?: number;
 }

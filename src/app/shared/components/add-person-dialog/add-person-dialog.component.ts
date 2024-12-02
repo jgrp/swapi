@@ -4,11 +4,11 @@ import { DialogRef } from '@angular/cdk/dialog';
 import { IPerson } from '../../types';
 
 @Component({
-  selector: 'app-add-person-form',
-  templateUrl: './add-person-form.component.html',
-  styleUrl: './add-person-form.component.scss'
+  selector: 'app-add-person-dialog',
+  templateUrl: './add-person-dialog.component.html',
+  styleUrl: './add-person-dialog.component.scss'
 })
-export class AddPersonFormComponent implements OnInit {
+export class AddPersonDialogComponent implements OnInit {
   protected personForm!: FormGroup;
   private _dialogRef = inject<DialogRef<IPerson>>(DialogRef<IPerson>);
   private _fb = inject(FormBuilder);

@@ -3,8 +3,8 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { PeopleActions, PeopleSelectors } from '../shared/state';
 import { Dialog } from '@angular/cdk/dialog';
-import { AddPersonFormComponent } from '../shared/components/add-person-form/add-person-form.component';
 import { IPerson } from '../shared/types';
+import { AddPersonDialogComponent } from '../shared/components/add-person-dialog/add-person-dialog.component';
 
 
 @Component({
@@ -29,18 +29,18 @@ export class ListComponent implements OnInit {
     this._store.dispatch(PeopleActions.loadPeople());
   }
 
-  protected onRemovePerson(id: number): void {
+  protected onRemovePerson(id: string): void {
     this._store.dispatch(PeopleActions.removePerson({personId: id}));
   }
 
   protected onAddPerson(): void {
-    console.log('onAddPerson');
-    const dialogRef = this._dialog.open(AddPersonFormComponent, {
+    const dialogRef = this._dialog.open(AddPersonDialogComponent, {
       height: '400px',
       width: '600px',
     });
 
     dialogRef.closed.subscribe(result => {
+      console.log(result);
       if (result) {
         this._store.dispatch(PeopleActions.addPerson({person: result as IPerson}));
       }

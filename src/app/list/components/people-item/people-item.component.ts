@@ -11,7 +11,7 @@ import { IPerson } from '../../../shared/types';
 export class PeopleItemComponent {
 
   @Input() data!: IPerson;
-  @Output() removeItem = new EventEmitter<number>();
+  @Output() removeItem = new EventEmitter<string>();
 
   protected onRemoveClick(): void {
     this.removeItem.emit(this.data.id);

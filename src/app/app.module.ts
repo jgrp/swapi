@@ -21,7 +21,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AddPersonFormComponent } from './shared/components/add-person-form/add-person-form.component';
+import { MatDialogActions, MatDialogContent, MatDialogTitle } from '@angular/material/dialog';
+import { AddPersonDialogComponent } from './shared/components/add-person-dialog/add-person-dialog.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { AddPersonFormComponent } from './shared/components/add-person-form/add-
     PeopleItemComponent,
     DetailComponent,
     DetailItemComponent,
-    AddPersonFormComponent
+    AddPersonDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +43,9 @@ import { AddPersonFormComponent } from './shared/components/add-person-form/add-
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    MatDialogTitle,
+    MatDialogContent,
+    MatDialogActions,
     ReactiveFormsModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot({}),

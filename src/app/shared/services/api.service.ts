@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, Observable } from 'rxjs';
+import { expand, map, Observable, of, reduce, takeWhile } from 'rxjs';
 import { IApiResult } from '../types/IApiResult.interface';
 import { IPerson } from '../types';
 
@@ -22,18 +22,18 @@ export class ApiService {
    * @returns An Observable of all people.
    */
   public getPeople(): Observable<IPerson[]> {
-    // return this._http.get<IApiResult<IPeople>>(`${BASE_URL}/people`).pipe(
-    //   // Recursively call, until next is null
-    //   expand((res) =>
-    //     res.next ? this._http.get<IApiResult<IPeople>>(res.next) : of(null)
-    //   ),
-    //   takeWhile(res => res !== null),
-    //   map((res) => res.results),
-    //   reduce(((allResults, currentResults) => [...allResults, ...currentResults]))
-    // );
     return this._http.get<IApiResult<IPerson>>(`${BASE_URL}/people`).pipe(
-      map((res) => res.results)
+      // Recursively call, until next is null
+      expand((res) =>
+        res.next ? this._http.get<IApiResult<IPerson>>(res.next) : of(null)
+      ),
+      takeWhile(res => res !== null),
+      map((res) => res.results),
+      reduce(((allResults, currentResults) => [...allResults, ...currentResults]))
     );
+    // return this._http.get<IApiResult<IPerson>>(`${BASE_URL}/people`).pipe(
+    //   map((res) => res.results)
+    // );
   }
 
 
