@@ -29,10 +29,17 @@ export class ListComponent implements OnInit {
     this._store.dispatch(PeopleActions.loadPeople());
   }
 
-  protected onRemovePerson(id: string): void {
+  /**
+   * Remove person from store, after remove was received from people-item
+   * @param id from person which needs to be removed
+   */
+  protected onRemovePerson(id: number): void {
     this._store.dispatch(PeopleActions.removePerson({personId: id}));
   }
 
+  /**
+   * Button click from add person button
+   */
   protected onAddPerson(): void {
     const dialogRef = this._dialog.open(AddPersonDialogComponent, {
       height: '400px',
@@ -40,7 +47,6 @@ export class ListComponent implements OnInit {
     });
 
     dialogRef.closed.subscribe(result => {
-      console.log(result);
       if (result) {
         this._store.dispatch(PeopleActions.addPerson({person: result as IPerson}));
       }

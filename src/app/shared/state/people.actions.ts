@@ -12,20 +12,12 @@ export const loadPeopleFailure = createAction(
   props<{ error: string }>()
 );
 
-// Add Person
 export const addPerson = createAction(
   '[People] Add Person',
   props<{ person: IPerson }>()
 );
 
-// Remove Person
 export const removePerson = createAction(
   '[People] Remove Person',
-  props<{ personId: string }>()
-);
-
-// Search Person
-export const searchPerson = createAction(
-  '[People] Search Person',
-  props<{ searchTerm: string }>()
+  props<{ personId: number }>()
 );

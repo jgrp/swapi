@@ -10,11 +10,7 @@ const BASE_URL = 'https://swapi.dev/api/';
   providedIn: 'root'
 })
 export class ApiService {
-
   protected readonly _http = inject(HttpClient);
-
-  constructor() {
-  }
 
   /**
    * Collects all paginated people from an API.
@@ -31,11 +27,7 @@ export class ApiService {
       map((res) => res.results),
       reduce(((allResults, currentResults) => [...allResults, ...currentResults]))
     );
-    // return this._http.get<IApiResult<IPerson>>(`${BASE_URL}/people`).pipe(
-    //   map((res) => res.results)
-    // );
   }
-
 
   /**
    * Get Person data from Api

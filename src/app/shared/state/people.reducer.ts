@@ -16,14 +16,6 @@ const initialState: PeopleState = {
   loading: false,
 };
 
-
-function extractID(url: string | undefined): string | undefined {
-  if (!url) return undefined;
-  const parts = url.split('/');
-  return parts.pop() ?? '';
-}
-
-
 export const peopleReducer = createReducer(
   initialState,
   on(PeopleActions.loadPeople, (state) => ({
@@ -35,7 +27,7 @@ export const peopleReducer = createReducer(
     loading: false,
     people: people.map((person, index) => ({
       ...person,
-      id: extractID(person?.url),
+      id: index,
     })),
     error: null,
   })),
@@ -47,16 +39,10 @@ export const peopleReducer = createReducer(
   on(PeopleActions.addPerson, (state, {person}) => ({
     ...state,
     // Add new person to state with internal ID, to load details from state
-    people: [...state.people, {...person, id: 'i' + (state.people.length + 1)}],
+    people: [...state.people, {...person, id: state.people.length}],
   })),
   on(PeopleActions.removePerson, (state, {personId}) => ({
     ...state,
     people: state.people.filter((p) => p.id !== personId),
   })),
-  on(PeopleActions.searchPerson, (state, {searchTerm}) => ({
-    ...state,
-    searchResults: state.people.filter((p) =>
-      p.name.toLowerCase().includes(searchTerm.toLowerCase())
-    ),
-  }))
 );

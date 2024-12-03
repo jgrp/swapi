@@ -12,3 +12,8 @@ export const selectLoading = createSelector(
   selectPeopleState,
   (state) => state.loading
 );
+
+export const selectPersonById = (personId: number) =>
+  createSelector(selectAllPeople, (people) =>
+    people.find((person) => person.id === personId)
+  );
