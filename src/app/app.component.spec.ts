@@ -1,35 +1,36 @@
-import { TestBed } from '@angular/core/testing';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
+import { MockComponent, MockModule } from 'ng-mocks';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
+import { ListComponent } from './list/list.component';
 
 describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [
-        RouterModule.forRoot([])
-      ],
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
+  let spectator: Spectator<AppComponent>;
+  const createComponent = createComponentFactory({
+    component: AppComponent,
+    imports: [
+      MockModule(RouterModule.forRoot([])),
+      MockComponent(ListComponent)],
+  });
+
+  beforeEach(() => {
+    spectator = createComponent();
   });
 
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 
   it(`should have as title 'swapi'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('swapi');
+    expect(spectator.component.title).toEqual('swapi');
   });
 
   it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, swapi');
+    spectator.detectChanges();
+    expect(spectator.query('h1')?.textContent).toContain('Swapi List');
   });
+
+  it('should display list component', () => {
+    expect(spectator.query(ListComponent)).toBeTruthy();
+  })
 });

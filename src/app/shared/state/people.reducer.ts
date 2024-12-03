@@ -38,7 +38,6 @@ export const peopleReducer = createReducer(
   })),
   on(PeopleActions.addPerson, (state, {person}) => ({
     ...state,
-    // Add new person to state with internal ID, to load details from state
     people: [...state.people, {...person, id: state.people.length}],
   })),
   on(PeopleActions.removePerson, (state, {personId}) => ({

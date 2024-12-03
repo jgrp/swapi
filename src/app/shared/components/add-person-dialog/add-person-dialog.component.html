@@ -4,38 +4,39 @@
     <!-- Name -->
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Name</mat-label>
-      <input formControlName="name" matInput/>
+      <input data-testid="input.name" formControlName="name" matInput/>
     </mat-form-field>
 
     <!-- Height -->
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Height</mat-label>
-      <input formControlName="height" matInput type="number"/>
+      <input data-testid="input.height" formControlName="height" matInput type="number"/>
     </mat-form-field>
 
     <!-- Width -->
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Mass</mat-label>
-      <input formControlName="mass" matInput type="number"/>
+      <input data-testid="input.mass" formControlName="mass" matInput type="number"/>
     </mat-form-field>
 
     <!-- Birth Year -->
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Birth Year</mat-label>
-      <input formControlName="birth_year" matInput type="number"/>
+      <input data-testid="input.birth_year" formControlName="birth_year" matInput type="number"/>
     </mat-form-field>
 
     <!-- Gender -->
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Gender</mat-label>
-      <input formControlName="gender" matInput/>
+      <input data-testid="input.gender" formControlName="gender" matInput/>
     </mat-form-field>
   </mat-dialog-content>
-
-  <mat-dialog-actions>
-    <button [disabled]="personForm.invalid" color="primary" mat-button type="submit">
-      Save
-    </button>
-  </mat-dialog-actions>
+  <div>
+    <mat-dialog-actions>
+      <button [disabled]="personForm.invalid" color="primary" data-testid="button.submit" mat-button type="submit">
+        Save
+      </button>
+    </mat-dialog-actions>
+  </div>
 </form>
 
